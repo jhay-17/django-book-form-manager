@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Record</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Book ISBN</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Book Name</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Book Author</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Book Category</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td class="py-3 px-4">{{ book.isbn }}</td>
+                        <td class="py-3 px-4">{{ book.name }}</td>
+                        <td class="py-3 px-4">{{ book.author }}</td>
+                        <td class="py-3 px-4">{{ book.category }}</td>
+                        <td class="py-3 px-4">
+                            <a href="{% url 'update_book' book.id %}" class="text-blue-600">Edit</a> |
+                            <a href="{% url 'delete_book' book.id %}" class="text-red-600">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>        
+        </table>
+        <br>
+        <a href="{% url 'book' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+            Add a New Book
+        </a>
+    </div>
+  </body>
+</html>
