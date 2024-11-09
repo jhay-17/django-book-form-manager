@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Book Details</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="flex justify-center items-center min-h-screen pt-10">
+        <form method="POST" action="{% url 'update_book' book.id %}" class="w-full max-w-lg bg-stone-300 text-black p-6 rounded-lg shadow-md">
+            {% csrf_token %}
+            <div class="space-y-4 flex flex-col items-center">
+                <h3 class="text-xl font-semibold">Update Book Details</h3>
+
+                <div class="w-full">
+                    <label for="isbn" class="block">Book ISBN:</label>
+                    <input type="text" id="isbn" name="isbn" value="{{ book.isbn }}" class="w-full px-4 py-2 border rounded-md text-black" placeholder="Enter Book ISBN" required />
+                </div>
+
+                <div class="w-full">
+                    <label for="name" class="block">Book Name:</label>
+                    <input type="text" id="name" name="name" value="{{ book.name }}" class="w-full px-4 py-2 border rounded-md text-black" placeholder="Enter Book Name" required />
+                </div>
+
+                <div class="w-full">
+                    <label for="author" class="block">Book Author:</label>
+                    <input type="text" id="author" name="author" value="{{ book.author }}" class="w-full px-4 py-2 border rounded-md text-black" placeholder="Enter Book Author" required />
+                </div>
+
+                <div class="w-full">
+                    <label for="category" class="block">Book Category:</label>
+                    <input type="text" id="category" name="category" value="{{ book.category }}" class="w-full px-4 py-2 border rounded-md text-black" placeholder="Enter Book Category" required />
+                </div>
+            </div>
+
+            <div class="mt-4 flex justify-between">
+                <button type="submit" class="bg-lime-900 text-white py-2 px-4 rounded">Update Book</button>
+                <a href="{% url 'bookrecords' %}" class="bg-gray-500 text-white py-2 px-4 rounded">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
